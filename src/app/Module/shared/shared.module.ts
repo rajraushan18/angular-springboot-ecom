@@ -6,23 +6,39 @@ import { NavContentComponent } from './components/navbar/nav-content/nav-content
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button'
 import {MatMenuModule} from '@angular/material/menu';
-
+import { ProductCardComponent } from './components/product-card/product-card.component';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { CartItemComponent } from './components/cart-item/cart-item.component';
+import { AddressCardComponent } from './components/address-card/address-card.component';
+import { OrderTrackerComponent } from './components/order-tracker/order-tracker.component';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
-    NavContentComponent
+    NavContentComponent,
+    ProductCardComponent,
+    StarRatingComponent,
+    CartItemComponent,
+    AddressCardComponent,
+    OrderTrackerComponent
   ],
   imports: [
     CommonModule,
     MatIconModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDividerModule
   ],
   exports: [
     NavbarComponent,
-    FooterComponent    
+    FooterComponent,
+    ProductCardComponent,
+    StarRatingComponent,
+    CartItemComponent,
+    AddressCardComponent,
+    OrderTrackerComponent
   ]
 })
 export class SharedModule { }

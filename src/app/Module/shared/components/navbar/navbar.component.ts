@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +10,10 @@ export class NavbarComponent {
 
   currentSection:any
   isNavbarContentOpen:any
+
+  constructor(private router:Router){
+
+  }
 
 
   openNavbarContent(section:any){
@@ -43,7 +48,7 @@ export class NavbarComponent {
   }
 
   navigateTo(path:any){
-
+    this.router.navigate([path])
   }
 
 

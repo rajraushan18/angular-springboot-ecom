@@ -58,7 +58,7 @@ text-grey-800 " >
                     </button>
 
                     <mat-menu #profileMenu="matMenu">
-                        <button mat-menu-item>orders</button>
+                        <button (click)="navigateTo('account/orders')" mat-menu-item>orders</button>
                         <button mat-menu-item>profile</button>
                         <button mat-menu-item>logout</button>
                       </mat-menu>
