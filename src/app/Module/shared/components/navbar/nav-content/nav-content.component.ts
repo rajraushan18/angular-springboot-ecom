@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { navigation } from './nav-content';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-content',
@@ -15,9 +16,13 @@ export class NavContentComponent {
     this.category=navigation
   }  
 
+  constructor(private router:Router){
+    this.category=navigation
+  }
   
-  
-
+  handleNavigate=(path:any)=>{
+    this.router.navigate([path])
+  }
 
 
 }

@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/Models/AppState';
+import { OrderService } from 'src/app/state/Order/order.service';
 
 @Component({
   selector: 'app-address-form',
@@ -19,12 +23,19 @@ export class AddressFormComponent {
     mobile: ['', Validators.required],
   })
 
-  constructor(private formBuilder:FormBuilder){
+  constructor(
+    private formBuilder:FormBuilder,
+    private router: Router,
+    private store: Store<AppState>,
+    private orderService:OrderService
+    ){
 
   }
 
-  handleCreateOrder(item:any){
-    
+  handleCreateOrder(reqData:any){
+    this.orderService.createOrder(reqData)
+    // this.router.navigate(['/checkout/payment']);
+    console.log('handle submit - : ', reqData);
   }
 
 

@@ -1,5 +1,11 @@
 import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import { AuthComponent } from 'src/app/Module/auth/auth.component';
+import { Store, select } from '@ngrx/store';
+import { AppState } from 'src/app/Models/AppState';
+import { UserService } from 'src/app/state/User/user.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -10,10 +16,31 @@ export class NavbarComponent {
 
   currentSection:any
   isNavbarContentOpen:any
+  userProfile: any;
 
-  constructor(private router:Router){
+  constructor(
+    private dialog: MatDialog,
+    private router: Router,
+    private store: Store<AppState>,
+    private userService:UserService,
+    // private _snackBar: MatSnackBar
+  ) {}
 
+  ngOnInit() {
+
+    if (localStorage.getItem('jwt')) this.userService.getUserProfile()
+    this.store.pipe(select((store:AppState)=>store.user)).subscribe((user)=>{
+      this.userProfile=user.userProfile;
+      if(user.userProfile){
+        this.dialog.closeAll()
+              } 
+    })
   }
+
+  handleLogout = () => {
+    console.log('logout success');
+    this.userService.logout()
+  };
 
 
   openNavbarContent(section:any){
@@ -45,6 +72,13 @@ export class NavbarComponent {
       // );
       this.closeNavbarContent();
     }
+  }
+
+  handleOpenLoginModel=()=>{
+    this.dialog.open(AuthComponent, {
+      width: '400px',
+      disableClose: false,
+    });
   }
 
   navigateTo(path:any){

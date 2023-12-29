@@ -5,24 +5,24 @@
     <section class="lg:grid grid-cols-3 lg:gap-10">
 
         <div class="col-span-2 flex items-center flex-col">
-            <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dHNoaXJ0fGVufDB8fDB8fHww" alt="" />
+            <img [src]="(productDetails$ | async)?.imageUrl" alt="" />
         </div>
 
         <div class="col-span-1 space-y-10 mt-10 lg:mt-0">
 
             <div class="space-y-2">
                 <p class="font-semibold text-gray-600 text-lg">
-                  Nofilter
+                  {{ (productDetails$ | async)?.brand }}
                 </p>
-                <p class="text-xl">Men solid Tshirt White</p>
+                <p class="text-xl">{{ (productDetails$ | async)?.title }}</p>
             </div>
             <div class="flex items-center space-x-5">
-                <p class="text-lg">₹393</p>
+                <p class="text-lg">₹{{ (productDetails$ | async)?.discountedPrice }}</p>
                 <p class="text-lg text-gray-700 line-through">
-                  ₹899
+                  ₹{{ (productDetails$ | async)?.price }}
                 </p>
                 <p class="text-green-400 font-semibold text-lg">
-                  80% off
+                  {{ (productDetails$ | async)?.discountPersent }}% off
                 </p>
             </div>
 
@@ -60,10 +60,7 @@
 
             <div>
                 <p class="text-gray-600">
-                    Indulge in the timeless beauty of Lengha Cholis for women and make a
-                    lasting impression with our exquisite designs. Experience the epitome
-                    of elegance and celebrate your femininity with our stunning
-                    collection.
+                  {{ (productDetails$ | async)?.description }}
                 </p>
                 <p class="text-gray-600">
                   Indulge in the timeless beauty of Lengha Cholis for women and make a
